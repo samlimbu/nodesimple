@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const config = require('./config/database');
 var exp = express();
 var categoryRouter = require('./routes/category');
+var paramRouter = require('./routes/param');
 //CORS on ExpressJs
 mongoose.connect(config.database);
 mongoose.connection.on('connected', function(){
@@ -23,6 +24,7 @@ exp.use(bodyParser.json()); //middleware function
 exp.use(bodyParser.urlencoded(({extended: true})));
 
 exp.use('/api/category', categoryRouter); //middleware funciton
+exp.use('/getParam', paramRouter); //middleware funciton
 
 exp.listen(port, function(err){
   if(err){
