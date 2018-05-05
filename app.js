@@ -1,10 +1,16 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-
+const mongoose = require('mongoose');
+const config = require('./config/database');
 var exp = express();
 var categoryRouter = require('./routes/category');
 //CORS on ExpressJs
+mongoose.connect(config.database);
+mongoose.connection.on('connected', function(){
+     console.log('connected to ' + config.database);
+});
 
+const port = process.env.PORT || 3000;
 exp.use(function(req, res, next){
   res.header("Access-Control-Allow-Origin", "*"); //view server
   res.header("Access-Control-Allow-Methods","GET,PUT,POST,DELETE");
