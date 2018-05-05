@@ -14,7 +14,14 @@ router.get('/', function(request,response){ //link url in browser
     if(err){
       throw err;
     }
-    response.json(data);
+     mongoose.model('param').find({}, function(err,data1){ //db.categories.find()
+          //response.json(data);
+          if(err){
+          throw err;
+          }
+          response.json(data1);
+          });    
+    
   });
 
 });
