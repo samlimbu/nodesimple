@@ -1,37 +1,26 @@
-const express = require('express');
-const cors = require('cors');
-const Data = require('./models/data')
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const config = require('./config/database');
-const genreRouter = require('./routes/genre');
-//const paramRouter = require('./routes/param');
+var express = require('express');
+var bodyParser = require('body-parser');
+
+var exp = express();
 var categoryRouter = require('./routes/category');
+//CORS on ExpressJs
 
-mongoose.connect(config.database);
-mongoose.connection.on('connected', function(){
-     console.log('connected to ' + config.database);
+exp.use(function(req, res, next){
+  res.header("Access-Control-Allow-Origin", "*"); //view server
+  res.header("Access-Control-Allow-Methods","GET,PUT,POST,DELETE");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next()
 });
 
-const port = process.env.PORT || 3000;
-const app = express();
 
+exp.use(bodyParser.json()); //middleware function
+exp.use(bodyParser.urlencoded(({extended: true})));
 
+exp.use('/api/category', categoryRouter); //middleware funciton
 
-app.use(cors());
-app.use(bodyParser.json());
-
-app.post('/', (request, response) => {
-	console.log(request.body);
-	response.json(request.body);
-
-});
-app.get('/', (request, response, next) => {
-	
-	response.json({"message":"Hellow world"});
-
-});
-
-app.listen(port, () => {
-	console.log('Server Up and running on PORT', port);
+exp.listen('3000', function(err){
+  if(err){
+    throw err;
+  }
+  console.log("running server at port 3000");
 });

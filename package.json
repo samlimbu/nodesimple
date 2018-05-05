@@ -3,16 +3,24 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "dependencies": {
+     "cors": "^2.8.3",
+     "express": "^4.16.2",
+     "mongoose": "*"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app"
   },
-  "author": "sam limbu",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samlimbu/nodesimple.git"
+  },
+  "author": "",
   "license": "ISC",
-  "dependencies": {
-    "cors": "^2.8.3",
-    "express": "^4.16.2",
-    "mongoose": "*"
-     
-  }
+  "bugs": {
+    "url": "https://github.com/samlimbu/nodesimple/issues"
+  },
+  "homepage": "https://github.com/samlimbu/nodesimple#readme"
 }
