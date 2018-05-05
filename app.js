@@ -24,7 +24,7 @@ exp.use(bodyParser.urlencoded(({extended: true})));
 
 exp.use('/api/category', categoryRouter); //middleware funciton
 
-exp.listen('3000', function(err){
+exp.listen(port, function(err){
   if(err){
     throw err;
   }
